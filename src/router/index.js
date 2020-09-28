@@ -18,6 +18,43 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
+
+  {
+    path: '/dynamic-table',
+    name: 'Dynamictable',
+    component: () => import('../views/DynamicTable.vue'),
+  },
+
+  {
+    path: '/wizard-form',
+    name: 'WizardForm',
+    component: () => import('../views/WizardForm.vue'),
+  },
+
+  {
+    path: '/campaign-creation/:slug',
+    name: 'app-create-campaign',
+    component: () => import ('../views/Campaigncreation/index.vue')
+  },
+
+  {
+    path: '/wizard-form/list',
+    name: 'WizardFormList',
+    component: () => import ('../views/WizardList.vue')
+  },
+
+  {
+    path: '/wizard-form/complete',
+    name: 'WizardFormComplete',
+    component: () => import ('../views/WizardFormComplete.vue')
+  },
+
+  {
+    path: '/calculator',
+    name: 'CalculatorIndex',
+    component: () => import ('../views/Calculator.vue')
+  }
+
 ];
 
 const router = new VueRouter({
