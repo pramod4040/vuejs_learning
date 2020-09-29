@@ -11,6 +11,8 @@ import store from './store';
 
 import ApiService from '@/common/api.service.js';
 
+import * as VueGoogleMaps from 'vue2-google-maps'
+
 // import 'vuetify/dist/vuetify.min.css';
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -19,6 +21,14 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 // Vue.use(Vuetify);
 Vue.use(BootstrapVue)
 Vue.use(VueAxios, axios)
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyD5DJAylrEqN9O46vNFHSzhRyHiiULc8tU',
+    libraries: 'places'
+  },
+  autobindAllEvents: true
+})
 
 ApiService.init();
 

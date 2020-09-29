@@ -53,6 +53,12 @@ const routes = [
     path: '/calculator',
     name: 'CalculatorIndex',
     component: () => import ('../views/Calculator.vue')
+  },
+
+  {
+    path: '/select-city-from-map',
+    name: 'SelectCityFromMap',
+    component: () => import ('../views/SelectCityFromMap.vue')
   }
 
 ];

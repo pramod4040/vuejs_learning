@@ -8,7 +8,8 @@
       <router-link to="/about">About</router-link>|
       <router-link to="/dynamic-table"> Dynamic Table </router-link>|
       <router-link to="/wizard-form/list">Wizard Form List </router-link> |
-      <router-link to="/calculator"> Calculator </router-link>
+      <router-link to="/calculator"> Calculator </router-link>|
+      <router-link to="/select-city-from-map">Select City</router-link>
       <!-- <router-link to="/campaign-creation/campaign-details">Create Campaign </router-link> -->
     </div>
     <router-view/>
