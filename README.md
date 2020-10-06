@@ -1,4 +1,4 @@
-# dynamic_table
+# Learning Vue js
 
 ## Project setup
 ```
