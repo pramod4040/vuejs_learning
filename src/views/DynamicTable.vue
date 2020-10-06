@@ -1,15 +1,15 @@
 <template>
     <div>
         
-     <form action="">
+     <form action="" id="dynamic-table-form">
          <label for="name_1">Enter Name</label>
-        <input type="text" id="name_1" v-model="name" placeholder="Enter Name here">
+        <input type="text"  v-model="name" placeholder="Enter Name here">
 
-        <label for="name_1">Enter Address</label>
-        <input type="text" id="name_1" v-model="address">
+        <label>Enter Address</label>
+        <input type="text"  v-model="address">
 
-        <label for="name_1">Enter Age</label>
-        <input type="number" id="name_1" v-model="age">
+        <label>Enter Age</label>
+        <input type="number" v-model="age">
 
         <button v-if="!editRecord" type="submit" @click.prevent="addData()">Add Row</button>
         <button v-if="editRecord && !savedInDatabase" type="submit" @click.prevent="saveEditedData()">Edit Row</button>
@@ -33,7 +33,7 @@
 
             <TableRow
             v-for="(record, index) in records"
-            :key="index"
+            :key="JSON.stringify({'id': record.id, 'index':index, 'name': record.name, 'address': record.address})"
             :info="{index: index, record: record}"
             :editData="editData"
             :deleteData="deleteData"
@@ -53,7 +53,7 @@
 
 
          <!-- <button @click="get_dynamic_table_record">Send Get request to dynamicTable</button> -->
-         <button @click="delete_selected_record">Delete Multiple Selected Record</button>
+         <button @click="delete_selected_record_database">Delete Multiple Selected Record</button>
          <button @click="save_multiple_records_in_database">Save multiple records in database</button>
 
         
@@ -145,12 +145,13 @@ export default {
                 this.savedInDatabase = true
              }
              this.index = editRecord.index
+             this.scrollToTop();
         },
 
         saveEditedData () {
             let record = {name: this.name, age: this.age, address: this.address, id: this.id}
             let payload = {record: record, index: this.index}
-            this.$store.commit('dynamicTable/SAVE_EDITED_RECORD', payload)
+            this.$store.dispatch('dynamicTable/save_edited_record', payload)
 
             this.resetFormData()
             this.clear_after_edit()
@@ -172,6 +173,7 @@ export default {
             //call api to delete
             this.$store.dispatch('dynamicTable/delete_record_from_database', payload)
             // this.$store.commit('dynamicTable/DELETE_RECORD', index)
+            this.scrollToTop()
         },
 
         select_all_button (e) {
@@ -187,6 +189,20 @@ export default {
             // }
             this.resetFormData()
             this.clear_after_edit()
+        },
+
+        scrollToTop () {
+            let scrollOption = {
+                left: 0,
+                top: 0,
+                // behavior: "smooth"
+            }
+            window.scrollTo(scrollOption);
+        },
+
+        delete_selected_record_database () {
+            this.$store.dispatch('dynamicTable/delete_selected_record');
+            this.scrollToTop();
         }
     },
 

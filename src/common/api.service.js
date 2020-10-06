@@ -1,10 +1,12 @@
 import axios from 'axios'
 import JwtService from '@/common/jwt.service.js'
+import API_URL from './config.js'
 
 const ApiService = {
     init () {
         //api server
-        axios.defaults.baseURL = "http://127.0.0.2/api"
+        axios.defaults.baseURL = API_URL
+        // console.log(process.env.NODE_ENV);
 
         //public_html_api
         // axios.defaults.baseURL = "http://127.0.0.3/api"

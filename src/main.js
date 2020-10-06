@@ -11,7 +11,8 @@ import store from './store';
 
 import ApiService from '@/common/api.service.js';
 
-import * as VueGoogleMaps from 'vue2-google-maps'
+import * as VueGoogleMaps from 'vue2-google-maps';
+import PortalVue from 'portal-vue';
 
 // import 'vuetify/dist/vuetify.min.css';
 
@@ -28,7 +29,9 @@ Vue.use(VueGoogleMaps, {
     libraries: 'places'
   },
   autobindAllEvents: true
-})
+});
+
+Vue.use(PortalVue);
 
 ApiService.init();
 

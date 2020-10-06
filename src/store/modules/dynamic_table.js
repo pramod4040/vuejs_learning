@@ -5,7 +5,7 @@ const dynamic_table = {
     state: {
         records: [],
         selectedRowList: [],
-        table_row_status: null,
+        table_row_status: false,
         select_all: false,
         // editRecord: false,
         // record_in_form: {
@@ -58,8 +58,6 @@ const dynamic_table = {
         },
 
         SAVE_EDITED_RECORD (state, payload) {
-            // console.log(payload)
-            console.log(state.records)
             state.records[payload.index] = payload.record
         },
 
@@ -228,6 +226,11 @@ const dynamic_table = {
             //         this.$store.commit('dynamicTable/DELETE_RECORD', payload.index)
             //     }
             // })
+        },
+
+        save_edited_record (context, payload) {
+            console.log(payload);
+            context.commit('SAVE_EDITED_RECORD', payload);
         }
     }
 }

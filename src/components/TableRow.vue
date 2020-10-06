@@ -2,14 +2,16 @@
     <tr>
         <td>
             <p v-if="info.record.id">Saved In Database</p>
-            <input type="checkbox" v-bind:value="info.index" v-model="selectedRow">
+            <input type="checkbox" :value="info.index" @input="selectedRowListUpdate">
         </td>
         <td>{{info.index + 1}}</td>
         <td>{{info.record.name}}</td>
         <td>{{info.record.address}}</td>
         <td>{{info.record.age}}</td>
         <td>
-          <button @click.prevent="editRecord(info.record, info.index)" style="margin:6px; color: blue;">Edit</button>
+          <button @click.prevent="editRecord(info.record, info.index)" style="margin:6px; color: blue;">
+            Edit
+            </button>
           <button @click.prevent="deleteRecord(info.index, info.record.id)" style="margin:10px; color: red;">Delete</button>
         </td>
         
@@ -31,11 +33,12 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'get_row_status'
+            'get_row_status', 'selectedRowList', 'table_row_status'
         ]),
+        
         selectedRow: {
             get(){
-                return this.get_row_status
+                return this.selectedRowList
             },
             set (newVal){
                 // console.log(newVal)
@@ -45,6 +48,7 @@ export default {
     },
     data () {
         return {
+            alwaysFalse: false
             // sn: 1,
             // name: "Pramod Khatiwada",
             // address: "testing",
@@ -69,6 +73,10 @@ export default {
         deleteRecord (index, id) {
             this.deleteData({'index': index, 'id': id})
         },
+        selectedRowListUpdate (e){
+            this.$store.commit('dynamicTable/ADD_ROW_IN_SELECTED_LIST', e.target.value);
+            
+        }
         // rowSelected (index) {
         //     this.$store.commit('dynamicTable/ADD_ROW_IN_SELECTED_LIST', index)
         // }

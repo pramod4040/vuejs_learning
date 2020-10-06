@@ -30,8 +30,8 @@
                     @input="updateShopProductInfo({'value': $event.target.value, 'property': 'quantity', 'childIndex': shop_pro_index})"
                 >
                     <option :value="num" 
-                        v-for="(num, num_index) in stockOfProduct" 
-                        :key="num_index"
+                        v-for="num in parseInt(stockOfProduct)" 
+                        :key="num"
                         :selected="productInShop.quantity == num"
                     >{{num}}</option>
                 </select>
@@ -68,7 +68,7 @@ export default {
     data () {
         return {
             allProductsList: [],
-            stockOfProduct: 5,
+            stockOfProduct: 10,
             selectedProduct: [],
         }
     },
@@ -144,6 +144,7 @@ export default {
                     return pro.stock;
                 }
             });
+            console.log(selectedPro.stock);
             this.stockOfProduct = selectedPro.stock;
         },
 

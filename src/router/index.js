@@ -22,13 +22,13 @@ const routes = [
   {
     path: '/dynamic-table',
     name: 'Dynamictable',
-    component: () => import('../views/DynamicTable.vue'),
+    component: () => import(/* webpackChunkName: "dynamictable" */ '../views/DynamicTable.vue'),
   },
 
   {
     path: '/wizard-form',
     name: 'WizardForm',
-    component: () => import('../views/WizardForm.vue'),
+    component: () => import(/* webpackChunkName: "wizardform" */  '../views/WizardForm.vue'),
   },
 
   {
